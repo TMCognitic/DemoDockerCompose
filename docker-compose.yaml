@@ -14,6 +14,8 @@ services:
       - back
   httpd:
     container_name: nginx
+    depends_on:
+      - postgres
     build: ./front
     ports:
       - 80:80
