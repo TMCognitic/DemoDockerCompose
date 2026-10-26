@@ -1,0 +1,27 @@
+name: FirstCompose
+
+services:
+  postgres:
+    container_name: postgres
+    build: ./postgres
+    environment:
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    # ports:
+    #   - 5432:5432
+    volumes:
+      - ./postgres/data:/var/lib/postgresql
+    networks:
+      - back
+  httpd:
+    container_name: nginx
+    build: ./front
+    ports:
+      - 80:80
+    networks:
+      - front
+      - back
+
+networks:
+  front:
+  back:
+    
